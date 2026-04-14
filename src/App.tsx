@@ -52,11 +52,6 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-outline-variant/40 bg-surface-container-low">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-medium uppercase tracking-widest text-secondary">Engineering Studio</span>
-            </div>
-
             <h1 className="text-6xl md:text-8xl font-serif font-light leading-[1.05] tracking-tight text-primary">
               Engineering <br />
               <span className="italic">with Soul.</span>

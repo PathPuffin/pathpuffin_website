@@ -54,7 +54,7 @@ const Hero = () => {
           >
             <h1 className="text-6xl md:text-8xl font-serif font-light leading-[1.05] tracking-tight text-primary">
               Engineering <br />
-              <span className="italic">with Soul.</span>
+              <span className="italic">with Soul</span>
             </h1>
 
             <p className="mt-8 text-lg font-light text-secondary max-w-md leading-relaxed">

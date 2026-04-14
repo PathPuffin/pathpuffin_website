@@ -209,63 +209,6 @@ const Footer = () => {
   );
 };
 
-const FeaturedArtifacts = () => {
-  const artifacts = [
-    { title: "The Kinetic Compass", category: "Physical Computing", size: "lg" },
-    { title: "Neural Topography", category: "Generative Art", size: "sm" },
-    { title: "Tactile Interface v2", category: "Industrial Design", size: "sm" },
-    { title: "Atmospheric Loom", category: "Installation", size: "md" },
-  ];
-
-  return (
-    <section className="py-48 max-w-7xl mx-auto px-8">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-        <div className="max-w-xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-secondary mb-4 block">Selected Works</span>
-          <h2 className="font-serif text-5xl md:text-7xl leading-tight text-primary">
-            Artifacts of <br /> <span className="italic">intentional</span> design.
-          </h2>
-        </div>
-        <p className="text-secondary max-w-xs font-light leading-relaxed">
-          Each project is a study in the intersection of technical precision and human warmth.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {artifacts.map((art, i) => (
-          <motion.div
-            key={art.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className={`
-              relative group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low
-              ${art.size === "lg" ? "md:col-span-8 aspect-[16/9]" : ""}
-              ${art.size === "md" ? "md:col-span-7 aspect-square" : ""}
-              ${art.size === "sm" ? "md:col-span-4 aspect-[4/5]" : ""}
-              ${i === 2 ? "md:col-span-5" : ""}
-            `}
-          >
-            <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
-            <div className="absolute bottom-0 left-0 p-8 w-full">
-              <span className="text-[10px] uppercase tracking-widest text-secondary mb-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                {art.category}
-              </span>
-              <h3 className="font-serif text-2xl text-primary translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                {art.title}
-              </h3>
-            </div>
-            {/* Placeholder for image */}
-            <div className="w-full h-full flex items-center justify-center text-outline-variant/20 font-serif italic text-4xl">
-              Artifact {i + 1}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-};
 
 const Process = () => {
   const steps = [
@@ -315,7 +258,6 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <FeaturedArtifacts />
         <Philosophy />
         <Process />
         <CTA />

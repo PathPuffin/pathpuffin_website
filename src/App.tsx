@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10">
       <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
-          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-8 h-8 object-contain" />
+          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
           <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
         </div>
 

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", serif;
+
+  --color-primary: #00151b;
+  --color-primary-container: #002b36;
+  --color-on-primary: #ffffff;
+  --color-secondary: #566157;
+  --color-background: #fcf9f5;
+  --color-surface: #fcf9f5;
+  --color-on-surface: #1c1c19;
+  --color-surface-container-low: #f6f3ef;
+  --color-surface-container-high: #ebe8e4;
+  --color-surface-container-highest: #e5e2de;
+  --color-outline-variant: #c1c7cb;
+
+  --radius-xl: 1.5rem;
+  --radius-md: 0.75rem;
+
+  --shadow-ambient: 0 12px 32px -4px rgba(28, 28, 25, 0.06);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    @apply bg-surface/70 backdrop-blur-xl;
+  }
+}

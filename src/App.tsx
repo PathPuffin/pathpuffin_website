@@ -6,7 +6,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Mail, Linkedin, Twitter } from "lucide-react";
 
-const LOGO_URL = "/pathpuffin.png";
+const LOGO_URL = "/puffin_logo_highres.png";
 const HERO_IMAGE_URL = "/pathpuffin3d.png";
 
 const Navbar = () => {

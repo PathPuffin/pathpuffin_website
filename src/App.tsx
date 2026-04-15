@@ -6,7 +6,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
@@ -19,6 +19,7 @@ const scrollTo = (id: string) => {
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -33,50 +34,98 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      className={`fixed top-0 w-full z-50 border-b transition-colors duration-500 ${
-        scrolled
-          ? "glass-nav border-outline-variant/10"
-          : "bg-transparent border-transparent"
-      }`}
-      animate={{ y: visible ? 0 : "-100%" }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    >
-      <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" fetchPriority="high" width={48} height={48} />
-          <span className={`text-lg font-semibold font-serif tracking-tight transition-colors duration-500 ${scrolled ? "text-primary" : "text-white"}`}>
-            pathpuffin
-          </span>
-        </Link>
-
-        <div className="hidden md:flex items-center space-x-10">
-          <Link
-            to="/blog"
-            className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
-          >
-            Blog
+    <>
+      <motion.nav
+        className={`fixed top-0 w-full z-50 border-b transition-colors duration-500 ${
+          scrolled || menuOpen
+            ? "glass-nav border-outline-variant/10"
+            : "bg-transparent border-transparent"
+        }`}
+        animate={{ y: visible ? 0 : "-100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" fetchPriority="high" width={48} height={48} />
+            <span className={`text-lg font-semibold font-serif tracking-tight transition-colors duration-500 ${scrolled || menuOpen ? "text-primary" : "text-white"}`}>
+              Pathpuffin
+            </span>
           </Link>
-          <button
-            onClick={() => scrollTo("contact")}
-            className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
-          >
-            Careers
-          </button>
-        </div>
 
-        <Link
-          to="/contact"
-          className={`px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest transition-all duration-500 ${
-            scrolled
-              ? "bg-primary text-on-primary hover:bg-primary/80"
-              : "bg-white text-primary hover:bg-white/90"
-          }`}
-        >
-          Connect
-        </Link>
-      </div>
-    </motion.nav>
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center space-x-10">
+            <Link
+              to="/blog"
+              className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
+            >
+              Blog
+            </Link>
+            <button
+              onClick={() => scrollTo("contact")}
+              className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
+            >
+              Careers
+            </button>
+          </div>
+
+          {/* Right side: Connect + burger */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/contact"
+              className={`px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest transition-all duration-500 ${
+                scrolled || menuOpen
+                  ? "bg-primary text-on-primary hover:bg-primary/80"
+                  : "bg-white text-primary hover:bg-white/90"
+              }`}
+            >
+              Connect
+            </Link>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={`md:hidden p-2 transition-colors duration-300 ${scrolled || menuOpen ? "text-primary" : "text-white"}`}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu overlay */}
+      <motion.div
+        className="fixed inset-0 z-40 bg-primary md:hidden flex flex-col px-8 pt-28 pb-12"
+        initial={false}
+        animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none" }}
+        transition={{ duration: 0.25 }}
+      >
+        <nav className="flex flex-col gap-2">
+          {[
+            { label: "Blog", to: "/blog" },
+            { label: "Careers", to: null },
+            { label: "Contact", to: "/contact" },
+          ].map(({ label, to }) =>
+            to ? (
+              <Link
+                key={label}
+                to={to}
+                onClick={() => setMenuOpen(false)}
+                className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors"
+              >
+                {label}
+              </Link>
+            ) : (
+              <button
+                key={label}
+                onClick={() => setMenuOpen(false)}
+                className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors text-left"
+              >
+                {label}
+              </button>
+            )
+          )}
+        </nav>
+      </motion.div>
+    </>
   );
 };
 

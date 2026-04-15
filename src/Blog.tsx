@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Menu, X } from "lucide-react";
 import { posts } from "./posts";
 import Footer from "./Footer";
 
@@ -9,6 +9,7 @@ const LOGO_URL = "/puffin_logo_highres.png";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -22,32 +23,69 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10"
-      animate={{ y: visible ? 0 : "-100%" }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    >
-      <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
-          <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
-        </Link>
-        <div className="hidden md:flex items-center space-x-10">
-          <Link to="/blog" className="text-primary font-medium text-xs uppercase tracking-widest border-b border-primary pb-0.5">
-            Blog
+    <>
+      <motion.nav
+        className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10"
+        animate={{ y: visible ? 0 : "-100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+          <Link to="/" className="flex items-center gap-3">
+            <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
+            <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
           </Link>
-          <a href="#" className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors">
-            Careers
-          </a>
+          <div className="hidden md:flex items-center space-x-10">
+            <Link to="/blog" className="text-primary font-medium text-xs uppercase tracking-widest border-b border-primary pb-0.5">
+              Blog
+            </Link>
+            <a href="#" className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors">
+              Careers
+            </a>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/contact"
+              className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
+            >
+              Connect
+            </Link>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden p-2 text-primary"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
-        <Link
-          to="/"
-          className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
-        >
-          Connect
-        </Link>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      <motion.div
+        className="fixed inset-0 z-40 bg-primary md:hidden flex flex-col px-8 pt-28 pb-12"
+        initial={false}
+        animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none" }}
+        transition={{ duration: 0.25 }}
+      >
+        <nav className="flex flex-col gap-2">
+          {[{ label: "Blog", to: "/blog" }, { label: "Contact", to: "/contact" }].map(({ label, to }) => (
+            <Link
+              key={label}
+              to={to}
+              onClick={() => setMenuOpen(false)}
+              className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors text-left"
+          >
+            Careers
+          </button>
+        </nav>
+      </motion.div>
+    </>
   );
 };
 

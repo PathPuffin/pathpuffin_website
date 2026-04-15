@@ -294,7 +294,7 @@ const BottomCTA = () => (
 
     {/* Text + button overlaid at the top of the image */}
     <motion.div
-      className="absolute top-0 left-0 right-0 text-center px-6 pt-6 md:pt-14"
+      className="absolute top-0 left-0 right-0 text-center px-6 pt-2 md:pt-14"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

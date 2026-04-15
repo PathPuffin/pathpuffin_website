@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { posts } from "./posts";
+import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
 
@@ -140,6 +141,7 @@ export default function Blog() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

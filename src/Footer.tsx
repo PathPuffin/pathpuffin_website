@@ -147,7 +147,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Resources</span>
               <Link to="/blog" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</Link>
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Careers inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Careers</a>
+              <Link to="/careers" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Careers</Link>
             </div>
 
             {/* Legal */}

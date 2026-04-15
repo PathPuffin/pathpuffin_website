@@ -60,12 +60,12 @@ const Navbar = () => {
             >
               Blog
             </Link>
-            <button
-              onClick={() => scrollTo("contact")}
+            <Link
+              to="/careers"
               className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
             >
               Careers
-            </button>
+            </Link>
           </div>
 
           {/* Right side: Connect + burger */}
@@ -101,28 +101,18 @@ const Navbar = () => {
         <nav className="flex flex-col gap-2">
           {[
             { label: "Blog", to: "/blog" },
-            { label: "Careers", to: null },
+            { label: "Careers", to: "/careers" },
             { label: "Contact", to: "/contact" },
-          ].map(({ label, to }) =>
-            to ? (
-              <Link
-                key={label}
-                to={to}
-                onClick={() => setMenuOpen(false)}
-                className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors"
-              >
-                {label}
-              </Link>
-            ) : (
-              <button
-                key={label}
-                onClick={() => setMenuOpen(false)}
-                className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors text-left"
-              >
-                {label}
-              </button>
-            )
-          )}
+          ].map(({ label, to }) => (
+            <Link
+              key={label}
+              to={to}
+              onClick={() => setMenuOpen(false)}
+              className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
       </motion.div>
     </>
@@ -180,10 +170,10 @@ const Hero = () => {
           >
             <Link
               to="/contact"
-              className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 inline-flex items-center gap-2 group"
+              className="bg-white text-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 inline-flex items-center gap-2 group"
             >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Start Building
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
@@ -201,9 +191,9 @@ const Hero = () => {
           <div className="flex items-center justify-center gap-6">
             <Link
               to="/contact"
-              className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
+              className="bg-white text-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
             >
-              Start a Conversation
+              Start Building
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <button

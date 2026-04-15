@@ -38,9 +38,9 @@ const Navbar = () => {
             <Link to="/blog" className="text-primary font-medium text-xs uppercase tracking-widest border-b border-primary pb-0.5">
               Blog
             </Link>
-            <a href="#" className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors">
+            <Link to="/careers" className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors">
               Careers
-            </a>
+            </Link>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -77,12 +77,13 @@ const Navbar = () => {
               {label}
             </Link>
           ))}
-          <button
+          <Link
+            to="/careers"
             onClick={() => setMenuOpen(false)}
-            className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors text-left"
+            className="font-serif text-4xl font-light text-white/80 hover:text-white py-3 border-b border-white/10 transition-colors"
           >
             Careers
-          </button>
+          </Link>
         </nav>
       </motion.div>
     </>

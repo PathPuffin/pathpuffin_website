@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
@@ -16,8 +17,25 @@ const scrollTo = (id: string) => {
 };
 
 const Navbar = () => {
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const current = window.scrollY;
+      setVisible(current < lastScrollY.current || current < 60);
+      lastScrollY.current = current;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10">
+    <motion.nav
+      className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10"
+      animate={{ y: visible ? 0 : "-100%" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
         <Link to="/" className="flex items-center gap-3">
           <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" fetchPriority="high" width={48} height={48} />
@@ -46,7 +64,7 @@ const Navbar = () => {
           Connect
         </Link>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
@@ -97,7 +115,7 @@ const Hero = () => {
 
         {/* Bottom — buttons */}
         <motion.div
-          className="text-center px-8 pb-16"
+          className="text-center px-8 pb-28"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}

@@ -39,12 +39,12 @@ const Navbar = () => {
           </button>
         </div>
 
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
+        <button
+          onClick={() => scrollTo("contact")}
           className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
         >
           Connect
-        </a>
+        </button>
       </div>
     </nav>
   );

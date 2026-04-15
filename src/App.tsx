@@ -101,7 +101,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
-        {/* Top — title + subtitle */}
+        {/* Top — title + subtitle + mobile-only button */}
         <div className="text-center px-8 pt-20 md:pt-24 pb-0">
           <motion.h1
             className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white"
@@ -112,7 +112,7 @@ const Hero = () => {
             Engineering <span className="italic">with Soul</span>
           </motion.h1>
 
-          {/* Hide subtitle on mobile so it doesn't overlap the illustration */}
+          {/* Subtitle — desktop only */}
           <motion.p
             className="hidden sm:block mt-5 text-base md:text-lg font-light text-white/65 max-w-lg mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -121,19 +121,35 @@ const Hero = () => {
           >
             We create digital paths that feel as natural as physical ones. Technical mastery meeting the warmth of human intent.
           </motion.p>
+
+          {/* Button — mobile only, sits between title and illustration */}
+          <motion.div
+            className="sm:hidden mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25 }}
+          >
+            <Link
+              to="/contact"
+              className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 inline-flex items-center gap-2 group"
+            >
+              Start a Conversation
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Spacer — illustration lives in the image */}
         <div className="flex-1" />
 
-        {/* Bottom — buttons */}
+        {/* Bottom — desktop only: both buttons */}
         <motion.div
-          className="text-center px-8 pb-6 md:pb-10"
+          className="hidden sm:block text-center px-8 pb-6 md:pb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <div className="flex items-center justify-center gap-6">
             <Link
               to="/contact"
               className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"

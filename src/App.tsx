@@ -74,13 +74,13 @@ const Hero = () => {
             </p>
 
             <div className="mt-12 flex items-center gap-6">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
+              <Link
+                to="/contact"
                 className="bg-primary text-on-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
               >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
               <button
                 onClick={() => scrollTo("process")}
                 className="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 group"
@@ -243,11 +243,16 @@ const Footer = () => {
             )}
           </div>
 
-          <div className="grid grid-cols-3 gap-8 lg:justify-items-end">
+          <div className="grid grid-cols-4 gap-8 lg:justify-items-end">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Company</span>
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Blog inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</a>
+              <Link to="/blog" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</Link>
               <a href={`mailto:${CONTACT_EMAIL}?subject=Careers inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Careers</a>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Contact</span>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">{CONTACT_EMAIL}</a>
+              <Link to="/contact" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Get in touch</Link>
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Follow</span>

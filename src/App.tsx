@@ -3,11 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Mail, Linkedin, Twitter } from "lucide-react";
+import { ArrowRight, Mail, LinkedinIcon, XIcon } from "lucide-react";
 
 const LOGO_URL = "/puffin_logo_highres.png";
 const HERO_IMAGE_URL = "/pathpuffin3d.png";
+const CONTACT_EMAIL = "hello@pathpuffin.ai";
+
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 const Navbar = () => {
   return (
@@ -19,20 +25,26 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-10">
-          {["Blog", "Careers"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
+          <button
+            onClick={() => scrollTo("process")}
+            className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
+          >
+            Blog
+          </button>
+          <button
+            onClick={() => scrollTo("process")}
+            className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
+          >
+            Careers
+          </button>
         </div>
 
-        <button className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300">
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
+        >
           Connect
-        </button>
+        </a>
       </div>
     </nav>
   );
@@ -41,7 +53,6 @@ const Navbar = () => {
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-surface-container-low" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/4 rounded-full blur-3xl" />
 
@@ -62,11 +73,17 @@ const Hero = () => {
             </p>
 
             <div className="mt-12 flex items-center gap-6">
-              <button className="bg-primary text-on-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="bg-primary text-on-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
+              >
                 Start a Conversation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 group">
+              </a>
+              <button
+                onClick={() => scrollTo("process")}
+                className="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 group"
+              >
                 Our Practice
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -96,7 +113,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Stats row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +164,7 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-40">
+    <section id="process" className="py-40">
       <div className="max-w-7xl mx-auto px-8">
         <div className="mb-20">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-4 block">Our Method</span>
@@ -196,13 +212,16 @@ const CTA = () => {
             Tell us about what you're building. We'll tell you if we're the right people to help.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button className="bg-primary text-on-primary px-10 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="bg-primary text-on-primary px-10 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
+            >
               Start a Conversation
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <a href="mailto:hello@pathpuffin.ai" className="text-secondary font-medium text-sm hover:text-primary transition-colors flex items-center gap-2">
+            </a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-secondary font-medium text-sm hover:text-primary transition-colors flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              hello@pathpuffin.ai
+              {CONTACT_EMAIL}
             </a>
           </div>
         </motion.div>
@@ -212,6 +231,14 @@ const CTA = () => {
 };
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubscribed(true);
+  };
+
   return (
     <footer className="w-full py-16 bg-primary text-on-primary">
       <div className="max-w-7xl mx-auto px-8">
@@ -220,33 +247,47 @@ const Footer = () => {
             <h2 className="font-serif text-3xl md:text-4xl mb-8 leading-tight">
               Stay in the loop on what<br /> we're <span className="italic">building.</span>
             </h2>
-            <form className="flex gap-3 max-w-sm" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="bg-white/10 border border-white/20 rounded-full py-2.5 px-5 focus:outline-none focus:border-white/50 transition-colors flex-1 text-sm placeholder:text-white/40"
-              />
-              <button className="bg-white text-primary px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white/90 transition-colors whitespace-nowrap">
-                Subscribe
-              </button>
-            </form>
+            {subscribed ? (
+              <p className="text-white/70 text-sm">Thanks for subscribing! We'll be in touch.</p>
+            ) : (
+              <form className="flex gap-3 max-w-sm" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-white/10 border border-white/20 rounded-full py-2.5 px-5 focus:outline-none focus:border-white/50 transition-colors flex-1 text-sm placeholder:text-white/40"
+                />
+                <button
+                  type="submit"
+                  className="bg-white text-primary px-6 py-2.5 rounded-full font-medium text-sm hover:bg-white/90 transition-colors whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
           </div>
 
           <div className="grid grid-cols-3 gap-8 lg:justify-items-end">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Company</span>
-              <a href="#blog" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</a>
-              <a href="#careers" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Careers</a>
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Blog inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</a>
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Careers inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Careers</a>
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Follow</span>
-              <a href="#" className="text-sm hover:opacity-100 opacity-70 transition-opacity flex items-center gap-1.5"><Linkedin className="w-3.5 h-3.5" />LinkedIn</a>
-              <a href="#" className="text-sm hover:opacity-100 opacity-70 transition-opacity flex items-center gap-1.5"><Twitter className="w-3.5 h-3.5" />X / Twitter</a>
+              <a href="https://linkedin.com/company/pathpuffin" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-100 opacity-70 transition-opacity flex items-center gap-1.5">
+                <LinkedinIcon className="w-3.5 h-3.5" />LinkedIn
+              </a>
+              <a href="https://x.com/pathpuffin" target="_blank" rel="noopener noreferrer" className="text-sm hover:opacity-100 opacity-70 transition-opacity flex items-center gap-1.5">
+                <XIcon className="w-3.5 h-3.5" />X / Twitter
+              </a>
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Legal</span>
-              <a href="#" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Privacy</a>
-              <a href="#" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Cookies</a>
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Privacy inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Privacy</a>
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Cookies inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Cookies</a>
             </div>
           </div>
         </div>

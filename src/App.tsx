@@ -18,12 +18,14 @@ const scrollTo = (id: string) => {
 
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
       const current = window.scrollY;
       setVisible(current < lastScrollY.current || current < 60);
+      setScrolled(current > window.innerHeight * 0.85);
       lastScrollY.current = current;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -32,26 +34,32 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10"
+      className={`fixed top-0 w-full z-50 border-b transition-colors duration-500 ${
+        scrolled
+          ? "glass-nav border-outline-variant/10"
+          : "bg-transparent border-transparent"
+      }`}
       animate={{ y: visible ? 0 : "-100%" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
         <Link to="/" className="flex items-center gap-3">
           <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" fetchPriority="high" width={48} height={48} />
-          <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
+          <span className={`text-lg font-semibold font-serif tracking-tight transition-colors duration-500 ${scrolled ? "text-primary" : "text-white"}`}>
+            pathpuffin
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center space-x-10">
           <Link
             to="/blog"
-            className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
+            className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
           >
             Blog
           </Link>
           <button
             onClick={() => scrollTo("contact")}
-            className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
+            className={`font-medium text-xs uppercase tracking-widest transition-colors duration-500 ${scrolled ? "text-secondary hover:text-primary" : "text-white/70 hover:text-white"}`}
           >
             Careers
           </button>
@@ -59,7 +67,11 @@ const Navbar = () => {
 
         <Link
           to="/contact"
-          className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
+          className={`px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest transition-all duration-500 ${
+            scrolled
+              ? "bg-primary text-on-primary hover:bg-primary/80"
+              : "bg-white text-primary hover:bg-white/90"
+          }`}
         >
           Connect
         </Link>
@@ -90,7 +102,7 @@ const Hero = () => {
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
         {/* Top — title + subtitle */}
-        <div className="text-center px-8 pt-28 md:pt-32 pb-0">
+        <div className="text-center px-8 pt-20 md:pt-24 pb-0">
           <motion.h1
             className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white"
             initial={{ opacity: 0, y: 20 }}

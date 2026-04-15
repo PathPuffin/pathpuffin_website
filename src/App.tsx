@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
-const HERO_IMAGE_URL = "/pathpuffin_compass.png";
+const HERO_IMAGE_URL = "/compass_background.png";
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -52,7 +52,7 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
 
       {/* Full-bleed background image */}
       <img
@@ -64,41 +64,61 @@ const Hero = () => {
         height={900}
       />
 
-      {/* Subtle dark overlay for text readability */}
-      <div className="absolute inset-0 bg-primary/40" />
-
-      {/* Centered text + buttons on top */}
+      {/* Content: title top, buttons bottom */}
       <motion.div
-        className="relative z-10 text-center px-8 pt-24"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 flex flex-col min-h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
-        <h1 className="text-6xl md:text-8xl font-serif font-light leading-[1.05] tracking-tight text-white">
-          Engineering <br />
-          <span className="italic">with Soul</span>
-        </h1>
-
-        <p className="mt-6 text-lg font-light text-white/70 max-w-md mx-auto leading-relaxed">
-          We create digital paths that feel as natural as physical ones. Technical mastery meeting the warmth of human intent.
-        </p>
-
-        <div className="mt-10 flex items-center justify-center gap-6">
-          <Link
-            to="/contact"
-            className="bg-white text-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
+        {/* Top — title + subtitle */}
+        <div className="text-center px-8 pt-32 pb-0">
+          <motion.h1
+            className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
           >
-            Start a Conversation
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <button
-            onClick={() => scrollTo("process")}
-            className="text-white/70 text-sm font-medium hover:text-white transition-colors flex items-center gap-2 group"
+            Engineering <span className="italic">with Soul</span>
+          </motion.h1>
+
+          <motion.p
+            className="mt-5 text-base md:text-lg font-light text-white/65 max-w-lg mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
           >
-            Our Practice
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-          </button>
+            We create digital paths that feel as natural as physical ones. Technical mastery meeting the warmth of human intent.
+          </motion.p>
         </div>
+
+        {/* Spacer — illustration lives in the image */}
+        <div className="flex-1" />
+
+        {/* Bottom — buttons */}
+        <motion.div
+          className="text-center px-8 pb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.35 }}
+        >
+          <div className="flex items-center justify-center gap-6">
+            <Link
+              to="/contact"
+              className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
+            >
+              Start a Conversation
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <button
+              onClick={() => scrollTo("process")}
+              className="text-white/60 text-sm font-medium hover:text-white transition-colors flex items-center gap-2 group"
+            >
+              Our Practice
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </motion.div>
       </motion.div>
 
     </section>

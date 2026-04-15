@@ -281,42 +281,35 @@ const Process = () => {
 };
 
 const BottomCTA = () => (
-  <section className="bg-background overflow-hidden">
-    {/* Text + button */}
+  <section className="relative overflow-hidden">
+    {/* Lighthouse image — fills the section */}
+    <img
+      src="/puffins_lighthouse.png"
+      alt="Puffins at the lighthouse"
+      className="w-full h-auto block"
+      loading="lazy"
+      width={1440}
+      height={600}
+    />
+
+    {/* Text + button overlaid at the top of the image */}
     <motion.div
-      className="text-center px-8 pt-28 pb-12"
+      className="absolute top-0 left-0 right-0 text-center px-8 pt-10 md:pt-14"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="font-serif text-5xl md:text-6xl font-light text-primary leading-tight mb-8">
+      <h2 className="font-serif text-4xl md:text-6xl font-light text-white leading-tight mb-6">
         Ready to build something <span className="italic">meaningful?</span>
       </h2>
       <Link
         to="/contact"
-        className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 group"
+        className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 group"
       >
         Contact
         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </Link>
-    </motion.div>
-
-    {/* Full-width lighthouse image flush to bottom */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, delay: 0.2 }}
-    >
-      <img
-        src="/puffins_lighthouse.png"
-        alt="Puffins at the lighthouse"
-        className="w-full h-auto block"
-        loading="lazy"
-        width={1440}
-        height={600}
-      />
     </motion.div>
   </section>
 );

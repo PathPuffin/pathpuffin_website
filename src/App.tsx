@@ -282,11 +282,11 @@ const Process = () => {
 
 const BottomCTA = () => (
   <section className="relative overflow-hidden">
-    {/* Lighthouse image — fills the section */}
+    {/* Lighthouse image — fixed shorter height on mobile, natural on desktop */}
     <img
       src="/puffins_lighthouse.png"
       alt="Puffins at the lighthouse"
-      className="w-full h-auto block"
+      className="w-full h-64 sm:h-80 md:h-auto object-cover object-center block"
       loading="lazy"
       width={1440}
       height={600}
@@ -294,21 +294,21 @@ const BottomCTA = () => (
 
     {/* Text + button overlaid at the top of the image */}
     <motion.div
-      className="absolute top-0 left-0 right-0 text-center px-8 pt-10 md:pt-14"
+      className="absolute top-0 left-0 right-0 text-center px-6 pt-6 md:pt-14"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="font-serif text-4xl md:text-6xl font-light text-white leading-tight mb-6">
+      <h2 className="font-serif text-2xl sm:text-4xl md:text-6xl font-light text-white leading-tight mb-4 md:mb-6">
         Ready to build something <span className="italic">meaningful?</span>
       </h2>
       <Link
         to="/contact"
-        className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 group"
+        className="inline-flex items-center gap-2 bg-white text-primary px-6 py-2.5 md:px-8 md:py-3 rounded-full font-medium text-xs md:text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 group"
       >
         Contact
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
       </Link>
     </motion.div>
   </section>

@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
-const HERO_IMAGE_URL = "/pathpuffin3d.png";
+const HERO_IMAGE_URL = "/pathpuffin_compass.png";
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10">
       <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
         <Link to="/" className="flex items-center gap-3">
-          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
+          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" fetchPriority="high" width={48} height={48} />
           <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
         </Link>
 
@@ -54,11 +54,13 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-surface-container-low" />
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-primary/4 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-8 pt-24 pb-16 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative w-full max-w-7xl mx-auto px-8 pt-24 pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
+
+          {/* Left — text & buttons, aligned to bottom of image */}
           <motion.div
+            className="pb-16 lg:pb-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
@@ -90,29 +92,24 @@ const Hero = () => {
             </div>
           </motion.div>
 
+          {/* Right — compass image, flush to bottom edge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="flex items-end justify-center lg:justify-end"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
-            className="flex justify-center lg:justify-end"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/8 rounded-3xl blur-2xl scale-90 translate-y-4" />
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="relative rounded-3xl overflow-hidden shadow-2xl max-w-[420px] w-full"
-              >
-                <img
-                  src={HERO_IMAGE_URL}
-                  alt="Puffin Engineering Symbol"
-                  className="w-full h-auto block"
-                />
-              </motion.div>
-            </div>
+            <img
+              src={HERO_IMAGE_URL}
+              alt="Pathpuffin Compass"
+              className="w-full max-w-135 h-auto object-contain block"
+              fetchPriority="high"
+              width={540}
+              height={540}
+            />
           </motion.div>
-        </div>
 
+        </div>
       </div>
     </section>
   );

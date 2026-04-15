@@ -118,10 +118,12 @@ const FeaturedPost = ({ post }: { post: typeof posts[0] }) => (
             </span>
           </div>
         </div>
-        <div className="bg-surface-container-highest/30 flex items-center justify-center p-12">
-          <p className="font-serif text-5xl italic text-outline-variant/30 text-center leading-tight">
-            "{post.title.split(" ").slice(0, 3).join(" ")}..."
-          </p>
+        <div className="bg-surface-container-highest/30 overflow-hidden">
+          <img
+            src="/blog_puffin.png"
+            alt="Blog featured"
+            className="w-full h-full object-cover object-center"
+          />
         </div>
       </div>
     </motion.div>

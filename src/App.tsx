@@ -153,7 +153,7 @@ const Hero = () => {
         {/* Top — title + subtitle + mobile-only button */}
         <div className="text-center px-8 pt-20 md:pt-24 pb-0">
           <motion.h1
-            className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white"
+            className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white mt-8 md:mt-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}

@@ -26,14 +26,14 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-10">
-          <button
-            onClick={() => scrollTo("process")}
+          <Link
+            to="/blog"
             className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
           >
             Blog
-          </button>
+          </Link>
           <button
-            onClick={() => scrollTo("process")}
+            onClick={() => scrollTo("contact")}
             className="text-secondary hover:text-primary font-medium text-xs uppercase tracking-widest transition-colors duration-300"
           >
             Careers

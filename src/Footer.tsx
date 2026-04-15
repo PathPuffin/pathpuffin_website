@@ -44,7 +44,7 @@ export default function Footer() {
             )}
           </div>
 
-          <div className="grid grid-cols-4 gap-8 lg:justify-items-end">
+          <div className="grid grid-cols-4 gap-x-12 gap-y-8">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Company</span>
               <Link to="/blog" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</Link>

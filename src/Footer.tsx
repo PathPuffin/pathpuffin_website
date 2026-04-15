@@ -5,9 +5,11 @@ import { LinkedinIcon, XIcon } from "lucide-react";
 const LOGO_URL = "/puffin_logo_highres.png";
 const CONTACT_EMAIL = "hello@pathpuffin.com";
 
-const AI_QUERY = encodeURIComponent(
-  "What is Pathpuffin? Summarize what they do as an engineering studio, their philosophy of engineering with soul, and their core principles."
+const PATHPUFFIN_QUERY = encodeURIComponent(
+  "I want to understand how Pathpuffin works as an engineering studio. Summarize what Pathpuffin does, their philosophy of engineering with soul, and their core principles. Use information from their website: https://pathpuffin.com/"
 );
+
+const AI_QUERY = PATHPUFFIN_QUERY;
 
 const AI_LINKS = [
   {
@@ -43,7 +45,7 @@ const AI_LINKS = [
   },
   {
     name: "Google",
-    href: `https://www.google.com/search?q=${AI_QUERY}`,
+    href: `https://www.google.com/search?udm=50&q=${AI_QUERY}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
         <path d="M21 12.5a9 9 0 1 1-9-9c2.39 0 4.68.94 6.36 2.64" />
@@ -160,10 +162,10 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <Link to="/" className="flex items-center gap-2.5">
+          <a href="https://pathpuffin.com" className="flex items-center gap-2.5">
             <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-8 h-8 object-contain" />
             <span className="font-serif italic text-lg">Pathpuffin</span>
-          </Link>
+          </a>
           <p className="text-[10px] uppercase tracking-[0.2em] opacity-30">© 2026 Pathpuffin, Inc.</p>
         </div>
 

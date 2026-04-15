@@ -90,7 +90,7 @@ const Hero = () => {
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
         {/* Top — title + subtitle */}
-        <div className="text-center px-8 pt-32 pb-0">
+        <div className="text-center px-8 pt-28 md:pt-32 pb-0">
           <motion.h1
             className="text-5xl md:text-7xl font-serif font-light leading-[1.05] tracking-tight text-white"
             initial={{ opacity: 0, y: 20 }}
@@ -100,8 +100,9 @@ const Hero = () => {
             Engineering <span className="italic">with Soul</span>
           </motion.h1>
 
+          {/* Hide subtitle on mobile so it doesn't overlap the illustration */}
           <motion.p
-            className="mt-5 text-base md:text-lg font-light text-white/65 max-w-lg mx-auto leading-relaxed"
+            className="hidden sm:block mt-5 text-base md:text-lg font-light text-white/65 max-w-lg mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
@@ -115,12 +116,12 @@ const Hero = () => {
 
         {/* Bottom — buttons */}
         <motion.div
-          className="text-center px-8 pb-28"
+          className="text-center px-8 pb-24 md:pb-28"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}
         >
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Link
               to="/contact"
               className="bg-white text-primary px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
@@ -130,7 +131,7 @@ const Hero = () => {
             </Link>
             <button
               onClick={() => scrollTo("process")}
-              className="text-white/60 text-sm font-medium hover:text-white transition-colors flex items-center gap-2 group"
+              className="text-white/70 text-sm font-medium hover:text-white transition-colors flex items-center gap-2 group"
             >
               Our Practice
               <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
@@ -235,8 +236,8 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Philosophy />
         <Process />
+        <Philosophy />
         <BottomCTA />
       </main>
       <Footer />

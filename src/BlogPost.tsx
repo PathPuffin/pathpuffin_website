@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
@@ -6,27 +7,46 @@ import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
 
-const Navbar = () => (
-  <nav className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10">
-    <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-      <Link to="/" className="flex items-center gap-3">
-        <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
-        <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
-      </Link>
-      <div className="hidden md:flex items-center space-x-10">
-        <Link to="/blog" className="text-primary font-medium text-xs uppercase tracking-widest border-b border-primary pb-0.5">
-          Blog
+const Navbar = () => {
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const current = window.scrollY;
+      setVisible(current < lastScrollY.current || current < 60);
+      lastScrollY.current = current;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <motion.nav
+      className="fixed top-0 w-full z-50 glass-nav border-b border-outline-variant/10"
+      animate={{ y: visible ? 0 : "-100%" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+        <Link to="/" className="flex items-center gap-3">
+          <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-12 h-12 object-contain" />
+          <span className="text-lg font-semibold font-serif tracking-tight text-primary">Pathpuffin</span>
+        </Link>
+        <div className="hidden md:flex items-center space-x-10">
+          <Link to="/blog" className="text-primary font-medium text-xs uppercase tracking-widest border-b border-primary pb-0.5">
+            Blog
+          </Link>
+        </div>
+        <Link
+          to="/"
+          className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
+        >
+          Connect
         </Link>
       </div>
-      <Link
-        to="/"
-        className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-primary/80 transition-all duration-300"
-      >
-        Connect
-      </Link>
-    </div>
-  </nav>
-);
+    </motion.nav>
+  );
+};
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();

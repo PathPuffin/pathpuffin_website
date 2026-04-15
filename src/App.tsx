@@ -52,65 +52,60 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-surface-container-low" />
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
 
-      <div className="relative w-full max-w-7xl mx-auto px-8 pt-24 pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
+      {/* Text + buttons — centered, upper portion */}
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-8 pt-32 pb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+        >
+          <h1 className="text-6xl md:text-8xl font-serif font-light leading-[1.05] tracking-tight text-primary">
+            Engineering <br />
+            <span className="italic">with Soul</span>
+          </h1>
 
-          {/* Left — text & buttons, aligned to bottom of image */}
-          <motion.div
-            className="pb-16 lg:pb-24"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-          >
-            <h1 className="text-6xl md:text-8xl font-serif font-light leading-[1.05] tracking-tight text-primary">
-              Engineering <br />
-              <span className="italic">with Soul</span>
-            </h1>
+          <p className="mt-6 text-lg font-light text-secondary max-w-md mx-auto leading-relaxed">
+            We create digital paths that feel as natural as physical ones. Technical mastery meeting the warmth of human intent.
+          </p>
 
-            <p className="mt-8 text-lg font-light text-secondary max-w-md leading-relaxed">
-              We create digital paths that feel as natural as physical ones. Technical mastery meeting the warmth of human intent.
-            </p>
-
-            <div className="mt-12 flex items-center gap-6">
-              <Link
-                to="/contact"
-                className="bg-primary text-on-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
-              >
-                Start a Conversation
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <button
-                onClick={() => scrollTo("process")}
-                className="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 group"
-              >
-                Our Practice
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Right — compass image, flush to bottom edge */}
-          <motion.div
-            className="flex items-end justify-center lg:justify-end"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
-          >
-            <img
-              src={HERO_IMAGE_URL}
-              alt="Pathpuffin Compass"
-              className="w-full max-w-135 h-auto object-contain block"
-              fetchPriority="high"
-              width={540}
-              height={540}
-            />
-          </motion.div>
-
-        </div>
+          <div className="mt-10 flex items-center justify-center gap-6">
+            <Link
+              to="/contact"
+              className="bg-primary text-on-primary px-8 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
+            >
+              Start a Conversation
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <button
+              onClick={() => scrollTo("process")}
+              className="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-2 group"
+            >
+              Our Practice
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Full-width compass image — flush to bottom */}
+      <motion.div
+        className="w-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.2, ease: "easeOut" }}
+      >
+        <img
+          src={HERO_IMAGE_URL}
+          alt="Pathpuffin Compass"
+          className="w-full h-auto block object-cover"
+          fetchPriority="high"
+          width={1440}
+          height={600}
+        />
+      </motion.div>
+
     </section>
   );
 };

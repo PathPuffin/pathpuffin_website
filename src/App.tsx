@@ -281,26 +281,42 @@ const Process = () => {
 };
 
 const BottomCTA = () => (
-  <section className="py-40 bg-surface-container-low text-center">
+  <section className="bg-background overflow-hidden">
+    {/* Text + button */}
     <motion.div
+      className="text-center px-8 pt-28 pb-12"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="font-serif text-5xl md:text-6xl font-light text-primary leading-tight mb-6">
-        Ready to build something <br /><span className="italic">meaningful?</span>
+      <h2 className="font-serif text-5xl md:text-6xl font-light text-primary leading-tight mb-8">
+        Ready to build something <span className="italic">meaningful?</span>
       </h2>
-      <p className="text-secondary font-light text-lg mb-10 max-w-md mx-auto leading-relaxed">
-        Tell us about your project. We'll get back to you within 24 hours.
-      </p>
       <Link
         to="/contact"
-        className="inline-flex items-center gap-2 bg-primary text-on-primary px-10 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 group"
+        className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 group"
       >
-        Get in Touch
+        Contact
         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </Link>
+    </motion.div>
+
+    {/* Full-width lighthouse image flush to bottom */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
+      <img
+        src="/puffins_lighthouse.png"
+        alt="Puffins at the lighthouse"
+        className="w-full h-auto block"
+        loading="lazy"
+        width={1440}
+        height={600}
+      />
     </motion.div>
   </section>
 );

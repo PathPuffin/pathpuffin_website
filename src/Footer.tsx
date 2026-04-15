@@ -5,6 +5,54 @@ import { LinkedinIcon, XIcon } from "lucide-react";
 const LOGO_URL = "/puffin_logo_highres.png";
 const CONTACT_EMAIL = "hello@pathpuffin.com";
 
+const AI_QUERY = encodeURIComponent(
+  "What is Pathpuffin? Summarize what they do as an engineering studio, their philosophy of engineering with soul, and how they approach building software."
+);
+
+const AI_LINKS = [
+  {
+    name: "ChatGPT",
+    href: `https://chatgpt.com/?q=${AI_QUERY}`,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M12 2a6.5 6.5 0 0 1 6.34 5.05A5 5 0 0 1 21 12a5 5 0 0 1-2.5 4.33A6.5 6.5 0 0 1 12 22a6.5 6.5 0 0 1-6.34-5.05A5 5 0 0 1 3 12a5 5 0 0 1 2.5-4.33A6.5 6.5 0 0 1 12 2z" />
+        <path d="M12 8v8M8 12h8" />
+      </svg>
+    ),
+  },
+  {
+    name: "Claude",
+    href: `https://claude.ai/new?q=${AI_QUERY}`,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="w-5 h-5">
+        <line x1="12" y1="2" x2="12" y2="22" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+        <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
+      </svg>
+    ),
+  },
+  {
+    name: "Perplexity",
+    href: `https://www.perplexity.ai/search?q=${AI_QUERY}`,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M12 2l2.5 7.5H22l-6.5 4.5 2.5 7.5L12 17l-6 4.5 2.5-7.5L2 9.5h7.5z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Gemini",
+    href: `https://gemini.google.com/app?q=${AI_QUERY}`,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M12 2C12 2 14 8 14 12C14 16 12 22 12 22C12 22 10 16 10 12C10 8 12 2 12 2Z" />
+        <path d="M2 12C2 12 8 10 12 10C16 10 22 12 22 12C22 12 16 14 12 14C8 14 2 12 2 12Z" />
+      </svg>
+    ),
+  },
+];
+
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -69,6 +117,25 @@ export default function Footer() {
               <a href={`mailto:${CONTACT_EMAIL}?subject=Privacy inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Privacy</a>
               <a href={`mailto:${CONTACT_EMAIL}?subject=Cookies inquiry`} className="text-sm hover:opacity-100 opacity-70 transition-opacity">Cookies</a>
             </div>
+          </div>
+        </div>
+
+        {/* Ask AI About Us */}
+        <div className="mb-12 pb-12 border-b border-white/10">
+          <p className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-4">Ask AI About Us</p>
+          <div className="flex items-center gap-4">
+            {AI_LINKS.map((ai) => (
+              <a
+                key={ai.name}
+                href={ai.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={ai.name}
+                className="text-on-primary/40 hover:text-on-primary/80 transition-colors duration-200"
+              >
+                {ai.icon}
+              </a>
+            ))}
           </div>
         </div>
 

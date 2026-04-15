@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Footer from "./Footer";
 
 const LOGO_URL = "/puffin_logo_highres.png";
 const CONTACT_EMAIL = "hello@pathpuffin.com";
@@ -160,6 +161,7 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

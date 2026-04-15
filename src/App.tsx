@@ -4,12 +4,13 @@
  */
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight, Mail, LinkedinIcon, XIcon, CheckCircle2 } from "lucide-react";
+import { ArrowRight, LinkedinIcon, XIcon, CheckCircle2 } from "lucide-react";
 
 const LOGO_URL = "/puffin_logo_highres.png";
 const HERO_IMAGE_URL = "/pathpuffin3d.png";
-const CONTACT_EMAIL = "hello@pathpuffin.ai";
+const CONTACT_EMAIL = "hello@pathpuffin.com";
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -113,23 +114,6 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-20 pt-8 border-t border-outline-variant/15 grid grid-cols-3 gap-8 max-w-lg"
-        >
-          {[
-            { value: "12+", label: "Projects Shipped" },
-            { value: "100%", label: "Client Satisfaction" },
-            { value: "3", label: "Core Principles" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <p className="font-serif text-3xl font-light text-primary">{stat.value}</p>
-              <p className="text-xs uppercase tracking-widest text-secondary mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
@@ -324,41 +308,6 @@ const Contact = () => {
   );
 };
 
-const CTA = () => {
-  return (
-    <section className="py-40 bg-surface-container-low">
-      <div className="max-w-4xl mx-auto px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-6 block">Ready?</span>
-          <h2 className="font-serif text-5xl md:text-7xl mb-6 leading-tight text-primary">
-            Begin your <span className="italic">meaningful</span> build.
-          </h2>
-          <p className="text-secondary font-light text-lg mb-12 max-w-md mx-auto leading-relaxed">
-            Tell us about what you're building. We'll tell you if we're the right people to help.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="bg-primary text-on-primary px-10 py-4 rounded-full font-medium text-sm uppercase tracking-widest hover:bg-primary/80 transition-all duration-300 flex items-center gap-2 group"
-            >
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-secondary font-medium text-sm hover:text-primary transition-colors flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -443,7 +392,6 @@ export default function App() {
         <Philosophy />
         <Process />
         <Contact />
-        <CTA />
       </main>
       <Footer />
     </div>

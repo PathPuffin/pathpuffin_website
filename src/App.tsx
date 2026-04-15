@@ -116,7 +116,7 @@ const Hero = () => {
 
         {/* Bottom — buttons */}
         <motion.div
-          className="text-center px-8 pb-24 md:pb-28"
+          className="text-center px-8 pb-6 md:pb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35 }}

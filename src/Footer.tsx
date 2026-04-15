@@ -92,7 +92,7 @@ export default function Footer() {
             )}
           </div>
 
-          <div className="grid grid-cols-4 gap-x-12 gap-y-8">
+          <div className="grid grid-cols-4 gap-x-16 gap-y-8">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-semibold uppercase tracking-widest opacity-50 mb-1">Company</span>
               <Link to="/blog" className="text-sm hover:opacity-100 opacity-70 transition-opacity">Blog</Link>
@@ -141,7 +141,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link to="/" className="flex items-center gap-2.5">
-            <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-6 h-6 object-contain brightness-0 invert" />
+            <img src={LOGO_URL} alt="Pathpuffin Logo" className="w-8 h-8 object-contain" />
             <span className="font-serif italic text-lg">Pathpuffin</span>
           </Link>
           <p className="text-[10px] uppercase tracking-[0.2em] opacity-30">© 2026 Pathpuffin, Inc.</p>

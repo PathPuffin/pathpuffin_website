@@ -9,8 +9,8 @@ import { motion } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import Footer from "./Footer";
 
-const LOGO_URL = "/puffin_logo_highres.png";
-const HERO_IMAGE_URL = "/compass_background.png";
+const LOGO_URL = "/puffin_logo_highres.webp";
+const HERO_IMAGE_URL = "/compass_background.webp";
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -274,7 +274,7 @@ const BottomCTA = () => (
   <section className="relative overflow-hidden">
     {/* Lighthouse image — fixed shorter height on mobile, natural on desktop */}
     <img
-      src="/puffins_lighthouse.png"
+      src="/puffins_lighthouse.webp"
       alt="Puffins at the lighthouse"
       className="w-full h-64 sm:h-80 md:h-auto object-cover object-center block"
       loading="lazy"

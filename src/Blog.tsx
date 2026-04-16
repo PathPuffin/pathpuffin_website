@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft, Menu, X } from "lucide-react";
 import { posts } from "./posts";
 import Footer from "./Footer";
 
-const LOGO_URL = "/puffin_logo_highres.png";
+const LOGO_URL = "/puffin_logo_highres.webp";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
@@ -121,7 +121,7 @@ const FeaturedPost = ({ post }: { post: typeof posts[0] }) => (
         </div>
         <div className="bg-surface-container-highest/30 overflow-hidden">
           <img
-            src="/blog_puffin.png"
+            src="/blog_puffin.webp"
             alt="Blog featured"
             className="w-full h-full object-cover object-center"
           />

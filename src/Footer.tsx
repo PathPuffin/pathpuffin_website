@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LinkedinIcon, XIcon } from "lucide-react";
 
-const LOGO_URL = "/puffin_logo_highres.png";
+const LOGO_URL = "/puffin_logo_highres.webp";
 const CONTACT_EMAIL = "hello@pathpuffin.com";
 
 const PATHPUFFIN_QUERY = encodeURIComponent(

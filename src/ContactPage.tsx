@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2, Menu, X } from "lucide-react";
 import Footer from "./Footer";
 
-const LOGO_URL = "/puffin_logo_highres.png";
+const LOGO_URL = "/puffin_logo_highres.webp";
 const CONTACT_EMAIL = "hello@pathpuffin.com";
 
 const Navbar = () => {

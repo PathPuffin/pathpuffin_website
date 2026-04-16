@@ -5,7 +5,7 @@ import { ArrowLeft, Menu, X } from "lucide-react";
 import { posts } from "./posts";
 import Footer from "./Footer";
 
-const LOGO_URL = "/puffin_logo_highres.png";
+const LOGO_URL = "/puffin_logo_highres.webp";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
